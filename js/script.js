@@ -11,40 +11,52 @@ function curtir() {
  if (curtido == false){
    likeCount++;
    curtido= true;
-   document.getElementById("likeCount").innerText = likeCount;
+   
 }else{
   likeCount--;
   curtido = false;
-  document.getElementById("likeCount").innerText = likeCount;
+  
 }
 
 }
 
-document.getElementById("likeBtn").addEventListener("click", curtir);
+
 
 function descurtir() {
  if (descurtido == false){
      deslikeCount++;
      descurtido = true;
-    document.getElementById("deslikeCount").innerText = deslikeCount;
+    
   }else{
     deslikeCount--;
     descurtido = false;
-    document.getElementById("deslikeCount").innerText = deslikeCount;
+    
   }
 
 } 
+
+// === VIEW (interface/renderização)===
+function atualizarTela(){
+  document.getElementById("likeCount").innerText = likeCount;
+  document.getElementById("deslikeCount").innerText = deslikeCount;
+}
 
 // === CONTROLLER (intermediação)===
 
 function clicarCurtir(){
   curtir();
+  atualizarTela();
 }
 function clicarDescutir(){
   descurtir();
+  atualizarTela();
 }
 
 // === EVENTOS === 
 
 document.getElementById("likeBtn").addEventListener("click", clicarCurtir);
 document.getElementById("deslikeBtn").addEventListener("click", descurtir);
+
+// === INICIALIZACÃO ===
+
+atualizarTela();
