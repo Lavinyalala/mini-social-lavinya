@@ -1,20 +1,22 @@
-//=== ESTADO (dados da aplicação) ===
+//=== BANCO DE DADOS (JSON simulado) ===
 
-let likeCount = 0;
-let curtido = false; // flag booleana
-let deslikeCount = 0;
-let descurtido = false; // flag boolena
-
+let post = {
+  likeCount: 0,
+  dislikeCount: 0,
+  curtido: false,
+  descurtido: false
+}
+ 
 // === SERVICE (regras de négocio) ===
 
 function curtir() {
- if (curtido == false){
-   likeCount++;
-   curtido= true;
+ if (post.curtido == false){
+   post.likeCount++;
+   post.curtido= true;
    
 }else{
-  likeCount--;
-  curtido = false;
+  post.likeCount--;
+  post.curtido = false;
   
 }
 
@@ -23,17 +25,33 @@ function curtir() {
 
 
 function descurtir() {
- if (descurtido == false){
-     deslikeCount++;
-     descurtido = true;
+ if (post.descurtido == false){
+     post.deslikeCount++;
+     post.descurtido = true;
     
   }else{
-    deslikeCount--;
-    descurtido = false;
+    post.deslikeCount--;
+    post.descurtido = false;
     
   }
 
 } 
+
+//=== API SIMULADO ===
+
+function getPost(){
+  return post; 
+}
+
+function likePost(){
+  curtir();
+  return post; 
+}
+
+function dislikePost(){
+  descurtir();
+  return post; 
+}
 
 // === VIEW (interface/renderização)===
 function atualizarTela(){
